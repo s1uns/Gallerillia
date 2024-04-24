@@ -1,0 +1,61 @@
+.header {
+    height: 10rem;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: rgb(215, 215, 215);
+    box-shadow: 0 3px 4px -1px gray;
+
+    .container {
+        height: 100%;
+        margin: 0 2.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo__container {
+            width: 30%;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            gap: 3.5rem;
+            font-size: 3.5rem;
+
+            p {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1.5rem;
+                border-radius: 0.7rem;
+                transition: all 0.6s;
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: 0 0 0 1px #5e687949, -5px -5px 0 1px #9d9c9c73;
+                }
+
+                &:active {
+                    cursor: pointer;
+                    box-shadow: inset -5px -5px 9px #ffffff73,
+                        inset 5px 5px 9px #5e687949;
+                    transition: all 0.05s;
+                }
+            }
+        }
+
+        .auth {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+        }
+    }
+    .sign-up {
+        background-color: rgba(207, 207, 207, 0.641);
+    }
+}

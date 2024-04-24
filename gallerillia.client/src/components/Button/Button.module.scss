@@ -1,0 +1,25 @@
+.button {
+    height: 5.6rem;
+    width: 15rem;
+    font-size: 0.7rem;
+    background-color: rgba(247, 247, 247, 0.641);
+    color: rgb(121, 121, 121);
+    border: 0.05rem solid rgb(121, 121, 121);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: #0e1111;
+        border: #3b444b;
+        color: #fffaf0;
+        transform: translateY(-0.2rem);
+        box-shadow: 0 0.2rem 1rem black;
+    }
+
+    &:active {
+    }
+}
