@@ -2,6 +2,7 @@
     width: 100vw;
     text-align: center;
     background-color: whitesmoke;
+    color: rgb(121, 121, 121);
 }
 
 tr:nth-child(even) {
