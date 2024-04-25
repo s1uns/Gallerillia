@@ -1,12 +1,12 @@
 import { FC, useState } from "react";
 import { AlbumProps } from "../../components/Album/Album";
-import styles from "./Home.module.scss";
-import { Pagination } from "../../components/Pagination/Pagination";
 import { AlbumsList } from "../../components/AlbumsList/AlbumsList";
+import { Pagination } from "../../components/Pagination/Pagination";
+import styles from "./MyAlbumsPage.module.scss";
 
-export const Home: FC = () => {
+export const MyAlbumsPage: FC = () => {
     const [albums, setAlbums] = useState<AlbumProps[]>([
-        { id: "1", title: "Nature", imgUrl: "", author: "Illia" },
+        { id: "1", title: "Family", imgUrl: "", author: "Illia" },
         {
             id: "2",
             title: "Life",
@@ -15,15 +15,20 @@ export const Home: FC = () => {
         },
         {
             id: "3",
-            title: "Family",
+            title: "Life",
             imgUrl: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
             author: "Illia",
         },
-        { id: "4", title: "Nature", imgUrl: "", author: "George" },
+        {
+            id: "4",
+            title: "Study",
+            imgUrl: "https://images.squarespace-cdn.com/content/v1/56b1148fe707ebac7ac5d685/1659916527594-0QOSGRAEFR3ZKPAIRBKI/studying-ahead-1421056.jpg",
+            author: "George",
+        },
         { id: "5", title: "Nature", imgUrl: "", author: "Betsy" },
     ]);
     return (
-        <div className={styles["home"]}>
+        <div className={styles["album-page"]}>
             <div className={styles["container"]}>
                 <AlbumsList albumsType="All Albums" albums={albums} />
                 <Pagination

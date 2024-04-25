@@ -2,7 +2,7 @@
     width: 100vw;
     text-align: center;
     background-color: whitesmoke;
-    color: rgb(121, 121, 121);
+    color: black;
 }
 
 tr:nth-child(even) {
@@ -17,4 +17,17 @@ th,
 td {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+
+.wrapper {
+    width: calc(100vw - 10rem);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.content {
+    padding: 40px 0;
 }

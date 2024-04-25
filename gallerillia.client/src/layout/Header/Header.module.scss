@@ -6,8 +6,16 @@
     left: 0;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    background: rgb(215, 215, 215);
+    background-color: rgb(255, 255, 255);
     box-shadow: 0 3px 4px -1px gray;
+
+    .current-page{
+        height: 100%;      
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+        width: 20rem;
+    }
 
     .container {
         height: 100%;
@@ -24,11 +32,13 @@
         .nav {
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
-            gap: 3.5rem;
+            font-family: system-ui;
             font-size: 3.5rem;
+            margin-right: -13rem;
 
-            p {
+            .nav-link {
+                color: black;
+                font-weight: 200;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -56,6 +66,18 @@
         }
     }
     .sign-up {
-        background-color: rgba(207, 207, 207, 0.641);
+        color: white;
+        background-color: black;
+
+        &:hover {
+            color: black;
+            background-color: white;
+            border: 0.05rem solid rgb(208, 208, 208);
+            box-shadow: 0 0.2rem 1rem rgb(209, 209, 209);
+        }
+
+        &:active {
+            box-shadow: 0 0.1rem 0.5rem rgb(209, 209, 209);
+        }
     }
 }

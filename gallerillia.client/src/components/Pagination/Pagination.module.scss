@@ -7,14 +7,15 @@
     }
 
     a {
-        color: #666;
-        background-color: #dddddd;
+        font-size: 1.5rem;
+        color: white;
+        background-color: black;
         display: inline-flex;
         justify-content: center;
         width: 45px;
         line-height: 42px;
         height: 45px;
-        border: 1px solid #666;
+        border: 1px solid gray;
         border-radius: 1rem;
         margin-right: 15px;
         cursor: pointer;
@@ -22,8 +23,8 @@
         transition: 0.5s all ease;
 
         &:hover {
-            background-color: #666;
-            color: white;
+            background-color: white;
+            color: black;
         }
     }
 }
@@ -31,8 +32,8 @@
 :global {
     .selected {
         a {
-            background-color: #666;
-            color: white;
+            background-color: white;
+            color: black;
         }
     }
 }
