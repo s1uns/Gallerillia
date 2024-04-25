@@ -1,0 +1,22 @@
+.album-page {
+    width: 100vw;
+    height: 87vh;
+    .container {
+        padding-top: 13rem;
+        box-sizing: border-box;
+
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .pictures__list {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 15rem;
+        }
+    }
+}

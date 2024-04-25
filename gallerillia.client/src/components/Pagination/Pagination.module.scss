@@ -1,0 +1,39 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+
+    li {
+        display: inline-block;
+    }
+
+    a {
+        font-size: 1.5rem;
+        color: white;
+        background-color: black;
+        display: inline-flex;
+        justify-content: center;
+        width: 45px;
+        line-height: 42px;
+        height: 45px;
+        border: 1px solid gray;
+        border-radius: 1rem;
+        margin-right: 15px;
+        cursor: pointer;
+
+        transition: 0.5s all ease;
+
+        &:hover {
+            background-color: white;
+            color: black;
+        }
+    }
+}
+
+:global {
+    .selected {
+        a {
+            background-color: white;
+            color: black;
+        }
+    }
+}
