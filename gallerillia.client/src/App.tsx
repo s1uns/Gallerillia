@@ -5,11 +5,13 @@ import { Route, Routes } from "react-router-dom";
 import { NotFound } from "./layout/NotFound/NotFound";
 import { MyAlbumsPage } from "./layout/MyAlbumsPage/MyAlbumsPage";
 import { AlbumPage } from "./layout/AlbumPage/AlbumPage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
     return (
         <>
             <Header />
+            <ToastContainer className="toast" />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/my-albums" element={<MyAlbumsPage />} />

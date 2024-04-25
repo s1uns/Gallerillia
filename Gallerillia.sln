@@ -3,9 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallerillia.Server", "Gallerillia.Server\Gallerillia.Server.csproj", "{E277806D-8E8A-4657-B8C0-61E785EBDFBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gallerillia.Server", "Gallerillia.Server\Gallerillia.Server.csproj", "{E277806D-8E8A-4657-B8C0-61E785EBDFBB}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "gallerillia.client", "gallerillia.client\gallerillia.client.esproj", "{2A0872A5-D929-458E-A445-3BD996D39DA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{42F62FC0-5804-40FD-89EB-ABC9F63B5F9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{F92EF163-423B-47E6-A5F4-D4B1F4B66E70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrustructure", "Infrustructure\Infrustructure.csproj", "{32969AD2-D8A8-4B3D-8158-24C7B8DEBAC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{154392F4-BEA5-4F9E-B5B5-7427938280CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +31,22 @@ Global
 		{2A0872A5-D929-458E-A445-3BD996D39DA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A0872A5-D929-458E-A445-3BD996D39DA3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2A0872A5-D929-458E-A445-3BD996D39DA3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{42F62FC0-5804-40FD-89EB-ABC9F63B5F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42F62FC0-5804-40FD-89EB-ABC9F63B5F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42F62FC0-5804-40FD-89EB-ABC9F63B5F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42F62FC0-5804-40FD-89EB-ABC9F63B5F9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F92EF163-423B-47E6-A5F4-D4B1F4B66E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F92EF163-423B-47E6-A5F4-D4B1F4B66E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F92EF163-423B-47E6-A5F4-D4B1F4B66E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F92EF163-423B-47E6-A5F4-D4B1F4B66E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32969AD2-D8A8-4B3D-8158-24C7B8DEBAC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32969AD2-D8A8-4B3D-8158-24C7B8DEBAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32969AD2-D8A8-4B3D-8158-24C7B8DEBAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32969AD2-D8A8-4B3D-8158-24C7B8DEBAC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{154392F4-BEA5-4F9E-B5B5-7427938280CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{154392F4-BEA5-4F9E-B5B5-7427938280CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{154392F4-BEA5-4F9E-B5B5-7427938280CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{154392F4-BEA5-4F9E-B5B5-7427938280CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

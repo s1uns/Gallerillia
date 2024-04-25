@@ -8,16 +8,13 @@ export interface PictureProps {
     imgUrl: string;
     upVotesCount: number;
     downVotesCount: number;
+    usersVote: "UNVOTED" | "UPVOTED" | "DOWNVOTED";
 }
 
-type VoteInfo = {
-    voteState: "unvoted" | "upvote" | "downvote";
-};
-
 export const Picture: FC<PictureProps> = (props: PictureProps) => {
-    const [voteInfo, setVoteInfo] = useState<VoteInfo>({
-        voteState: "unvoted",
-    });
+    const [voteInfo, setVoteInfo] = useState<"UNVOTED" | "UPVOTED" | "DOWNVOTED">(
+        props.usersVote
+    );
     return (
         <div className={styles["picture"]}>
             <div className={styles["container"]}>
@@ -30,12 +27,12 @@ export const Picture: FC<PictureProps> = (props: PictureProps) => {
                 </div>
                 <div className={styles["votes"]}>
                     <VoteButton
-                        isVoted={voteInfo.voteState == "upvote"}
+                        isVoted={voteInfo == "UPVOTED"}
                         isPositive={true}
                         votesCount={props.upVotesCount}
                     />
                     <VoteButton
-                        isVoted={voteInfo.voteState == "downvote"}
+                        isVoted={voteInfo == "DOWNVOTED"}
                         isPositive={false}
                         votesCount={props.downVotesCount}
                     />

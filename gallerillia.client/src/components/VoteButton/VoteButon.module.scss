@@ -13,6 +13,14 @@
         p {
             color: white;
         }
+
+        &:hover p{
+            color: black;
+        }
+
+        &:active p{
+            color: white;
+        }
     }
 
     &:hover {
