@@ -1,36 +1,53 @@
-import { FC, useState } from "react";
-import { AlbumProps } from "../../components/Album/Album";
+import { FC, useEffect, useState } from "react";
 import styles from "./Home.module.scss";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { AlbumsList } from "../../components/AlbumsList/AlbumsList";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Albums, fetchAlbums } from "../../services/api";
+import { AlbumsNotFound } from "../NotFound/AlbumsNotFound";
 
 export const Home: FC = () => {
-    const [albums, setAlbums] = useState<AlbumProps[]>([
-        { id: "1", title: "Nature", imgUrl: "", author: "Illia" },
-        {
-            id: "2",
-            title: "Life",
-            imgUrl: "https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-nature-mountain-scenery-with-flowers-free-photo.jpg?w=600&quality=80",
-            author: "Michael",
-        },
-        {
-            id: "3",
-            title: "Family",
-            imgUrl: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
-            author: "Illia",
-        },
-        { id: "4", title: "Nature", imgUrl: "", author: "George" },
-        { id: "5", title: "Nature", imgUrl: "", author: "Betsy" },
-    ]);
+    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [albumsList, setAlbumsList] = useState<Albums>({
+        albums: [],
+        totalPages: 1,
+    });
+    const onChangePage = (page: number) => {
+        setCurrentPage(page);
+    };
+    useEffect(() => {
+        const response = fetchAlbums(currentPage);
+        response
+            .then((data) => {
+                setAlbumsList(data);
+            })
+            .catch((error: any) => {
+                if (error.response) {
+                    toast.error(error.response.data);
+                } else {
+                    toast.error("Couldn't load the albums, try again later!");
+                }
+            });
+    }, [currentPage]);
     return (
         <div className={styles["home"]}>
             <div className={styles["container"]}>
-                <AlbumsList albumsType="All Albums" albums={albums} />
-                <Pagination
-                    currentPage={0}
-                    onChangePage={() => {}}
-                    totalPages={15}
-                />
+                {albumsList.albums.length > 0 ? (
+                    <>
+                        <AlbumsList
+                            albumsType="All Albums"
+                            albums={albumsList.albums}
+                        />
+                        <Pagination
+                            currentPage={currentPage}
+                            onChangePage={onChangePage}
+                            totalPages={albumsList.totalPages}
+                        />
+                    </>
+                ) : (
+                    <AlbumsNotFound />
+                )}
             </div>
         </div>
     );

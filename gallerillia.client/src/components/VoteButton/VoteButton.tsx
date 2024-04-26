@@ -36,8 +36,8 @@ export const VoteButton: FC<VoteProps> = (props: VoteProps) => {
     }
 
     return (
-        <div className={styles["vote-btn voted"]}>
-            <div className={styles["vote"]}> <BiSolidDownvote /></div>
+        <div className={`${styles["vote-btn"]} ${styles["voted"]}`}>
+        <div className={styles["vote"]}> <BiSolidDownvote /></div>
             <p className={styles["vote-count--negative"]}>{props.votesCount}</p>
         </div>
     );
