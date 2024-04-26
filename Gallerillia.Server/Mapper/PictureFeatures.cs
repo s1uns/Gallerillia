@@ -9,8 +9,6 @@ namespace Gallerillia.Server.Mapper
     {
         public PictureFeatures()
         {
-/*            CreateMap<Picture, PictureDto>()
-                .ForCtorParam(nameof(PictureDto.AuthorId), otp => otp.MapFrom(src => src.Album.AuthorId));*/
             CreateMap<CreatePictureDto, Picture>();
 
         }

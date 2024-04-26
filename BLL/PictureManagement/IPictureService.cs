@@ -14,6 +14,7 @@ namespace BLL.PictureManagement
         public Task<Result<string, Error>> UploadPictureAsync(CreatePictureDto createPictureDto);
         public Task<Result<PicturesListDto, Error>> GetPicturesAsync(Guid albumId, int pageNumber);
         public Task<Result<string, Error>> DeletePictureAsync(Guid pictureId);
+        public Task<Result<string, Error>> VotePictureAsync(Guid pictureId, string voteStatus);
 
     }
 }

@@ -24,7 +24,7 @@ namespace Gallerillia.Server.Controllers
         /// </remarks>
         /// <returns>An IActionResult representing the result of the operation.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllAlbums([FromQuery] int page = 1)
+        public async Task<IActionResult> GetAllAlbums([FromQuery] int page = 0)
         {
             var result = await _albumService.GetAllAlbumsAsync(page);
 
@@ -42,7 +42,7 @@ namespace Gallerillia.Server.Controllers
         /// <returns>An IActionResult representing the result of the operation.</returns>
         [HttpGet("my-albums")]
         [Authorize]
-        public async Task<IActionResult> GetMyAlbums([FromQuery] int page = 1)
+        public async Task<IActionResult> GetMyAlbums([FromQuery] int page = 0)
         {
             var result = await _albumService.GetOwnAlbumsAsync(page);
 

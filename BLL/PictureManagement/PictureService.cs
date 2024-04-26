@@ -54,12 +54,14 @@ namespace BLL.PictureManagement
                 }
 
                 var picture = await _context.Pictures.FirstOrDefaultAsync(p => p.Id == pictureId);
-                var album = await _context.Albums.Where(a => a.Id == picture.AlbumId).Include(a => a.Pictures).FirstOrDefaultAsync();
 
                 if (picture is null)
                 {
                     return PictureServiceErrors.GetPictureByIdError;
                 }
+
+                var album = await _context.Albums.Where(a => a.Id == picture.AlbumId).Include(a => a.Pictures).FirstOrDefaultAsync();
+
 
                 if (userId != picture.Album.AuthorId && userRole != "Administrator")
                 {
@@ -180,7 +182,85 @@ namespace BLL.PictureManagement
             catch (Exception ex)
             {
                 _logger.LogError($"BLL.UploadPictureAsync ERROR: {ex.Message}");
-                return AlbumServiceErrors.CreateAlbumError;
+                return PictureServiceErrors.CreatePictureError;
+            }
+        }
+
+        public async Task<Result<string, Error>> VotePictureAsync(Guid pictureId, string voteStatus)
+        {
+            try
+            {
+                var isUserValid = _contextAccessor.TryGetUserId(out Guid userId);
+
+                if (!isUserValid)
+                {
+                    return UserErrors.InvalidUserId;
+                }
+
+                var picture = await _context.Pictures.Include(p => p.Votes).Include(p => p.Album).FirstOrDefaultAsync(p => p.Id == pictureId);
+
+                if (picture is null)
+                {
+                    return PictureServiceErrors.GetPictureByIdError;
+                }
+
+                if (picture.Album.AuthorId == userId)
+                {
+                    return PictureServiceErrors.CannotVoteYourPictureError;
+                }
+
+                var vote = await _context.Votes.FirstOrDefaultAsync(v => v.UserId == userId && v.PictureId == pictureId);
+
+                if (vote is null)
+                {
+
+                    switch (voteStatus)
+                    {
+                        case "upvote":
+                        case "downvoted":
+                            vote = new Vote
+                            {
+                                UserId = userId,
+                                PictureId = pictureId,
+                                IsPositive = voteStatus == "upvote"
+                            };
+                            await _context.Votes.AddAsync(vote);
+                            picture.Votes.Add(vote);
+                            break;
+
+                        case "unvote":
+                            return PictureServiceErrors.RestractVoteError;
+
+                        default:
+                            return PictureServiceErrors.WrongVoteInformation;
+                    }
+                }
+                else
+                {
+
+                    switch (voteStatus)
+                    {
+                        case "upvote":
+                        case "downvote":
+                            vote.IsPositive = voteStatus == "upvote";
+                            break;
+
+                        case "unvote":
+                            _context.Votes.Remove(vote);
+                            break;
+
+                        default:
+                            return PictureServiceErrors.WrongVoteInformation;
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return "Voted this picture successfully!";
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"BLL.VotePictureAsync ERROR: {ex.Message}");
+                return PictureServiceErrors.VotePictureError;
             }
         }
     }

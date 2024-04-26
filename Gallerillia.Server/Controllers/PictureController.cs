@@ -26,7 +26,7 @@ namespace Gallerillia.Server.Controllers
         /// </remarks>
         /// <returns>An IActionResult representing the result of the operation.</returns>
         [HttpGet]
-        public async Task<IActionResult> GetPictures([FromQuery] Guid albumId, int page = 1)
+        public async Task<IActionResult> GetPictures([FromQuery] Guid albumId, int page = 0)
         {
             var result = await _pictureService.GetPicturesAsync(albumId, page);
 
@@ -63,6 +63,24 @@ namespace Gallerillia.Server.Controllers
         public async Task<IActionResult> GetPictures(Guid id)
         {
             var result = await _pictureService.DeletePictureAsync(id);
+
+            return this.CreateResponse(result);
+        }
+
+        /// <summary>
+        /// Votes an existing picture.
+        /// </summary>
+        /// <param name="pictureId">The id of the picture which should be voted.</param>
+        /// <param name="voteStatus">The info about given vote.</param>
+        /// <remarks>
+        /// If the operation is successful, it will return a corresponding message.
+        /// </remarks>
+        /// <returns>An IActionResult representing the result of the operation.</returns>
+        [HttpPost("/vote")]
+        [Authorize]
+        public async Task<IActionResult> VotePicture([FromQuery] Guid pictureId, string voteStatus)
+        {
+            var result = await _pictureService.VotePictureAsync(pictureId, voteStatus);
 
             return this.CreateResponse(result);
         }
