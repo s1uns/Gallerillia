@@ -7,7 +7,7 @@ import { Pictures, fetchPictures } from "../../services/api";
 import { toast } from "react-toastify";
 import { PicturesNotFound } from "../NotFound/PicturesNotFound";
 
-export const AlbumPage: FC = () => {
+const AlbumPage: FC = () => {
     const { id } = useParams();
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [picturesList, setPicturesList] = useState<Pictures>({
@@ -27,7 +27,7 @@ export const AlbumPage: FC = () => {
                 })
                 .catch((error: any) => {
                     if (error.response) {
-                        toast.error(error.response.data);
+                        toast.error(error.response.data.message);
                     }
                 });
         } else {
@@ -58,3 +58,5 @@ export const AlbumPage: FC = () => {
         </div>
     );
 };
+
+export default AlbumPage;

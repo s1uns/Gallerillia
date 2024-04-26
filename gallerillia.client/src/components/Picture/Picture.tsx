@@ -12,9 +12,8 @@ export interface PictureProps {
 }
 
 export const Picture: FC<PictureProps> = (props: PictureProps) => {
-    const [voteInfo, setVoteInfo] = useState<
-        "UNVOTED" | "UPVOTED" | "DOWNVOTED"
-    >(props.usersVote);
+    const userId = localStorage.getItem("userId");
+
     return (
         <div className={styles["picture"]}>
             <div className={styles["container"]}>
@@ -27,12 +26,12 @@ export const Picture: FC<PictureProps> = (props: PictureProps) => {
                 </div>
                 <div className={styles["votes"]}>
                     <VoteButton
-                        isVoted={voteInfo == "UPVOTED"}
+                        isVoted={props.usersVote == "UPVOTED"}
                         isPositive={true}
                         votesCount={props.upVotesCount}
                     />
                     <VoteButton
-                        isVoted={voteInfo == "DOWNVOTED"}
+                        isVoted={props.usersVote == "DOWNVOTED"}
                         isPositive={false}
                         votesCount={props.downVotesCount}
                     />
