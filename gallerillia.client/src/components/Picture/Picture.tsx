@@ -12,9 +12,9 @@ export interface PictureProps {
 }
 
 export const Picture: FC<PictureProps> = (props: PictureProps) => {
-    const [voteInfo, setVoteInfo] = useState<"UNVOTED" | "UPVOTED" | "DOWNVOTED">(
-        props.usersVote
-    );
+    const [voteInfo, setVoteInfo] = useState<
+        "UNVOTED" | "UPVOTED" | "DOWNVOTED"
+    >(props.usersVote);
     return (
         <div className={styles["picture"]}>
             <div className={styles["container"]}>

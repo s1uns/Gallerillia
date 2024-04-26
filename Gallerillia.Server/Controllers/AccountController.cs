@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gallerillia.Server.Controllers
 {
-    [Route("api/accounts")]
+    [Route("api/[controller]")]
     [ApiController]
     public class AccountController : ControllerBase
     {

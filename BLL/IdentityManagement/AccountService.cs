@@ -103,6 +103,7 @@ namespace BLL.IdentityManagement
                 var result = new SignInResultDto()
                 {
                     UserId = Guid.Parse(identityUser.Id),
+                    UserRole = (await _userManager.GetRolesAsync(identityUser))[0],
                     Bearer = token,
                 };
                 return result;

@@ -9,6 +9,7 @@ namespace Infrustructure.Dto.Account
     public class SignInResultDto
     {
         public Guid UserId { get; set; }
+        public string UserRole { get; set; }
         public string Bearer { get; set; }
     }
 }
