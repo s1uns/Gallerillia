@@ -175,7 +175,7 @@ namespace BLL.AlbumsManagement
         {
             try
             {
-                var albums = _mapper.Map<IList<AlbumDto>>(await query.Include(a => a.Author).Skip((pageNumber - 1) * 5).Take(5).ToListAsync());
+                var albums = _mapper.Map<IList<AlbumDto>>(await query.Include(a => a.Author).Skip(pageNumber * 5).Take(5).ToListAsync());
                 var totalPages = (query.Count() + 5 - 1) / 5;
 
                 var result = new AlbumsListDto(albums, totalPages);

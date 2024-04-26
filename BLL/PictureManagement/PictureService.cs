@@ -106,7 +106,7 @@ namespace BLL.PictureManagement
 
                 var totalPages = (count + 5 - 1) / 5;
 
-                var pictures = await query.Include(a => a.Votes).Include(a => a.Album).Skip((pageNumber - 1) * 5).Take(5).ToListAsync();
+                var pictures = await query.Include(a => a.Votes).Include(a => a.Album).Skip(pageNumber * 5).Take(5).ToListAsync();
                 var result = new PicturesListDto(new List<PictureDto> { }, totalPages);
 
                 await pictures.ForEachAsync(async (p) =>

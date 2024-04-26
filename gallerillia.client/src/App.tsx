@@ -15,7 +15,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/my-albums" element={<MyAlbumsPage />} />
-                <Route path="/pictures" element={<AlbumPage />} />
+                <Route path="/pictures/:id" element={<AlbumPage />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </>

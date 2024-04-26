@@ -44,7 +44,7 @@ namespace Gallerillia.Server.Controllers
         [Authorize]
         public async Task<IActionResult> GetMyAlbums([FromQuery] int page = 1)
         {
-            var result = await _albumService.GetAllAlbumsAsync(page);
+            var result = await _albumService.GetOwnAlbumsAsync(page);
 
             return this.CreateResponse(result);
         }

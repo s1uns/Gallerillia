@@ -1,31 +1,21 @@
 import { FC, useEffect, useState } from "react";
-import { AlbumProps } from "../../components/Album/Album";
 import styles from "./Home.module.scss";
 import { Pagination } from "../../components/Pagination/Pagination";
 import { AlbumsList } from "../../components/AlbumsList/AlbumsList";
-import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-type Albums = {
-    albums: AlbumProps[];
-    totalPages: number;
-};
-
-export const fetchAlbums = async (currentPage: number) => {
-    const { data } = await axios.get<Albums>(
-        `${import.meta.env.VITE_ASPNETCORE_HTTPS_PORT}Album?page=${currentPage}`
-    );
-
-    return data;
-};
+import { Albums, fetchAlbums } from "../../services/api";
+import { AlbumsNotFound } from "../NotFound/AlbumsNotFound";
 
 export const Home: FC = () => {
-    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [currentPage, setCurrentPage] = useState<number>(0);
     const [albumsList, setAlbumsList] = useState<Albums>({
         albums: [],
         totalPages: 1,
     });
+    const onChangePage = (page: number) => {
+        setCurrentPage(page);
+    };
     useEffect(() => {
         const response = fetchAlbums(currentPage);
         response
@@ -43,15 +33,21 @@ export const Home: FC = () => {
     return (
         <div className={styles["home"]}>
             <div className={styles["container"]}>
-                <AlbumsList
-                    albumsType="All Albums"
-                    albums={albumsList.albums}
-                />
-                <Pagination
-                    currentPage={currentPage}
-                    onChangePage={() => {}}
-                    totalPages={albumsList.totalPages}
-                />
+                {albumsList.albums.length > 0 ? (
+                    <>
+                        <AlbumsList
+                            albumsType="All Albums"
+                            albums={albumsList.albums}
+                        />
+                        <Pagination
+                            currentPage={currentPage}
+                            onChangePage={onChangePage}
+                            totalPages={albumsList.totalPages}
+                        />
+                    </>
+                ) : (
+                    <AlbumsNotFound />
+                )}
             </div>
         </div>
     );
