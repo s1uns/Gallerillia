@@ -13,6 +13,8 @@ export interface VoteProps {
     votesCount: number;
 }
 export const VoteButton: FC<VoteProps> = (props: VoteProps) => {
+
+
     if (!props.isVoted) {
         return (
             <div className={styles["vote-btn"]}>

@@ -1,15 +1,15 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./Home.module.scss";
 import { Pagination } from "../../components/Pagination/Pagination";
-import { AlbumsList } from "../../components/AlbumsList/AlbumsList";
+import { AlbumList } from "../../components/AlbumList/AlbumList";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Albums, fetchAlbums } from "../../services/api";
+import { AlbumsList, fetchAlbums } from "../../services/api";
 import { AlbumsNotFound } from "../NotFound/AlbumsNotFound";
 
 export const Home: FC = () => {
     const [currentPage, setCurrentPage] = useState<number>(0);
-    const [albumsList, setAlbumsList] = useState<Albums>({
+    const [albumsList, setAlbumsList] = useState<AlbumsList>({
         albums: [],
         totalPages: 1,
     });
@@ -24,7 +24,7 @@ export const Home: FC = () => {
             })
             .catch((error: any) => {
                 if (error.response) {
-                    toast.error(error.response.data);
+                    toast.error(error.response.data.message);
                 } else {
                     toast.error("Couldn't load the albums, try again later!");
                 }
@@ -35,8 +35,7 @@ export const Home: FC = () => {
             <div className={styles["container"]}>
                 {albumsList.albums.length > 0 ? (
                     <>
-                        <AlbumsList
-                            albumsType="All Albums"
+                        <AlbumList
                             albums={albumsList.albums}
                         />
                         <Pagination

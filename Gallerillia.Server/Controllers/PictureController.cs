@@ -60,7 +60,7 @@ namespace Gallerillia.Server.Controllers
         /// <returns>An IActionResult representing the result of the operation.</returns>
         [HttpDelete("{id}")]
         [Authorize]
-        public async Task<IActionResult> GetPictures(Guid id)
+        public async Task<IActionResult> DeletePicture(Guid id)
         {
             var result = await _pictureService.DeletePictureAsync(id);
 

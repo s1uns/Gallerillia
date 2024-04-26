@@ -1,18 +1,21 @@
 import { FC } from "react";
 import styles from "./Album.module.scss";
 import { Link } from "react-router-dom";
+import { Button } from "../Button/Button";
 
 export interface AlbumProps {
     id: string;
     title: string;
     imgUrl: string;
     author: string;
+    authorId: string;
+    canBeDeleted: boolean;
 }
 
 export const Album: FC<AlbumProps> = (props: AlbumProps) => {
     return (
-        <Link to={`/pictures/${props.id}`}>
-            <div className={styles["album"]}>
+        <div className={styles["album"]}>
+            <Link to={`/pictures/${props.id}`}>
                 <div className={styles["container"]}>
                     <div className={styles["album__image-container"]}>
                         <img
@@ -35,7 +38,23 @@ export const Album: FC<AlbumProps> = (props: AlbumProps) => {
                         </div>
                     </div>
                 </div>
-            </div>
-        </Link>
+            </Link>
+            {props.canBeDeleted ? (
+                <div className={styles["manage-btns"]}>
+                    <Button
+                        customStyles={styles["update-btn"]}
+                        title={"Delete album"}
+                    >
+                        Delete
+                    </Button>
+                    <Button
+                        customStyles={styles["delete-btn"]}
+                        title={"Delete album"}
+                    >
+                        Delete
+                    </Button>
+                </div>
+            ) : null}
+        </div>
     );
 };

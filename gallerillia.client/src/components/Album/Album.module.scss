@@ -3,28 +3,29 @@
     width: 30rem;
     height: 40rem;
     color: black;
-    margin: 3rem 0;
     outline: 0.01rem dotted black;
     border-radius: 5rem;
-    overflow: hidden;
-    box-shadow: 0 0.2rem 1.5rem 0.1rem black;
-    transition: all 0.3s;
-
-    &:hover {
-        cursor: pointer;
-        box-shadow: 0 0.1rem 0.5rem 0.1rem black;
-
-        .album__image-container {
-            transition: all 0.3s;
-            transform: translateY(30%) scale(2);
-        }
-    }
-
-    &:active {
-        box-shadow: 0 0.1rem 0.2rem 0.1rem black;
-    }
 
     .container {
+        transition: all 0.3s;
+        overflow: hidden;
+        border-radius: 5rem;
+
+        box-shadow: 0 0.2rem 1.5rem 0.1rem black;
+
+        &:hover {
+            cursor: pointer;
+            box-shadow: 0 0.1rem 0.5rem 0.1rem black;
+
+            .album__image-container {
+                transition: all 0.3s;
+                transform: translateY(30%) scale(2);
+            }
+        }
+
+        &:active {
+            box-shadow: 0 0.1rem 0.2rem 0.1rem black;
+        }
         height: 100%;
         width: 100%;
         display: flex;
@@ -48,11 +49,27 @@
         .album__description {
             font-size: 3rem;
 
+            &--title {
+                color: black;
+            }
+
             &--author {
                 font-size: 2rem;
                 font-family: system-ui;
                 color: rgb(183, 183, 183);
             }
+        }
+    }
+    .manage-btns {
+        margin-top: 3rem;
+        width: 100%;
+        .update-btn,
+        .delete-btn {
+            width: 100%;
+            font-size: 1.5rem;
+        }
+        .delete-btn {
+            margin-top: 1rem;
         }
     }
 }

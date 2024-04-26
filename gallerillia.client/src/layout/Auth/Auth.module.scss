@@ -1,0 +1,42 @@
+.Auth-box {
+    &:global(.MuiBox-root) {
+        font-size: 2rem;
+    }
+}
+
+.Text-field {
+    &:global(.MuiInputBase-root) {
+        font-size: 3rem;
+        width: 100%;
+        border: 1px solid black;
+    }
+
+    &:global(.MuiOutlinedInput-root) {
+        &.Mui-focused fieldset {
+            border-color: white;
+        }
+    }
+    &--label {
+        &:global(.MuiFormLabel-root) {
+            color: black;
+            font-size: 3rem;
+            background: whitesmoke;
+        }
+    }
+}
+
+.Button {
+    background-color: white;
+    width: 100%;
+    font-size: 4rem;
+    margin: 3rem 0;
+}
+
+.Link {
+    color: black;
+    font-size: 2rem;
+
+    &:hover {
+        color: grey;
+    }
+}
