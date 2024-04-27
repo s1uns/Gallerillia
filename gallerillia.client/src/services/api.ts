@@ -1,20 +1,9 @@
 import axios from "axios";
-import { AlbumProps } from "../components/Album/Album";
-import { PictureProps } from "../components/Picture/Picture";
+import { AlbumsList, Pictures, UpdateAlbumDto } from "../types/types";
 
 const url = import.meta.env.VITE_ASPNETCORE_HTTPS_PORT
     ? import.meta.env.VITE_ASPNETCORE_HTTPS_PORT
     : "https://localhost:7189/api/";
-
-export type AlbumsList = {
-    albums: AlbumProps[];
-    totalPages: number;
-};
-
-export type Pictures = {
-    pictures: PictureProps[];
-    totalPages: number;
-};
 
 export const fetchAlbums = async (currentPage: number) => {
     const { data } = await axios.get<AlbumsList>(
@@ -45,6 +34,16 @@ export const deleteAlbum = async (albumId: string) => {
     return data;
 };
 
+export const updateAlbum = async (updateAlbumDto: UpdateAlbumDto) => {
+    const bearer = localStorage.getItem("bearer");
+
+    const { data } = await axios.put<string>(`${url}Album`, updateAlbumDto, {
+        headers: { Authorization: `Bearer ${bearer}` },
+    });
+
+    return data;
+};
+
 export const fetchPictures = async (albumId: string, currentPage: number) => {
     const bearer = localStorage.getItem("bearer");
 
@@ -53,7 +52,6 @@ export const fetchPictures = async (albumId: string, currentPage: number) => {
         {
             headers: {
                 Authorization: `Bearer ${bearer}`,
-                "Cache-Control": "no-cache",
             },
         }
     );

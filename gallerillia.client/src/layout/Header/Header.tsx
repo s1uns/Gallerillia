@@ -1,10 +1,10 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import logo from "../../../public/logo-transparent-svg.svg";
 import styles from "./Header.module.scss";
 import { Button } from "../../components/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
-import { IHeaderProps } from "../../App";
 import { toast } from "react-toastify";
+import { IHeaderProps } from "../../types/interfaces";
 
 export const Header: FC<IHeaderProps> = (props: IHeaderProps) => {
     const navigate = useNavigate();

@@ -1,15 +1,7 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./Picture.module.scss";
 import { VoteButton } from "../VoteButton/VoteButton";
-
-export interface PictureProps {
-    id: string;
-    authorId: string;
-    imgUrl: string;
-    upVotesCount: number;
-    downVotesCount: number;
-    usersVote: "UNVOTED" | "UPVOTED" | "DOWNVOTED";
-}
+import { PictureProps } from "../../types/interfaces";
 
 export const Picture: FC<PictureProps> = (props: PictureProps) => {
     const userId = localStorage.getItem("userId");

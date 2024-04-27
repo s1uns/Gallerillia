@@ -1,16 +1,16 @@
 import { FC, useEffect, useState } from "react";
-import { Album, AlbumProps } from "../Album/Album";
+import { Album } from "../Album/Album";
 import styles from "./AlbumList.module.scss";
 import { toast } from "react-toastify";
-import { AlbumsList, fetchAlbums, fetchOwnAlbums } from "../../services/api";
 import { Pagination } from "../Pagination/Pagination";
 import { AlbumsNotFound } from "../../layout/NotFound/AlbumsNotFound";
+import { IAlbumListProps } from "../../types/interfaces";
+import { AlbumsList } from "../../types/types";
+import { fetchAlbums, fetchOwnAlbums } from "../../services/api";
 
-interface AlbumListProps {
-    albumsType: "all-albums" | "my-albums";
-}
 
-export const AlbumList: FC<AlbumListProps> = (props: AlbumListProps) => {
+
+export const AlbumList: FC<IAlbumListProps> = (props: IAlbumListProps) => {
     const userId = localStorage.getItem("userId");
     const userRole = localStorage.getItem("userRole");
     const [reload, setReload] = useState(true);
@@ -75,11 +75,11 @@ export const AlbumList: FC<AlbumListProps> = (props: AlbumListProps) => {
                                     imgUrl={album.imgUrl}
                                     author={album.author}
                                     authorId={album.authorId}
-                                    canBeDeleted={
+                                    canBeManaged={
                                         userId == album.authorId ||
                                         userRole == "Administrator"
                                     }
-                                    onDelete={setReload}
+                                    onChange={setReload}
                                 />
                             ))}
                         </>

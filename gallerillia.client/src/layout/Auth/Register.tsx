@@ -10,10 +10,10 @@ import {
 import { LockOutlined } from "@mui/icons-material";
 import { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { IAuthProps, IPageProps } from "../../App";
 import { signUp } from "../../services/authApi";
 import { toast } from "react-toastify";
 import { Button } from "../../components/Button/Button";
+import { IAuthProps } from "../../types/interfaces";
 
 const Register: FC<IAuthProps> = (props: IAuthProps) => {
     const [confirmPassword, setConfirmPassword] = useState("");

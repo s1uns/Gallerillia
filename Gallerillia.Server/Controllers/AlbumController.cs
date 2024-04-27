@@ -74,7 +74,7 @@ namespace Gallerillia.Server.Controllers
         /// If the operation is successful, it will return a corresponding message.
         /// </remarks>
         /// <returns>An IActionResult representing the result of the operation.</returns>
-        [HttpPut("update")]
+        [HttpPut]
         [Authorize]
         public async Task<IActionResult> UpdateAlbum([FromBody] UpdateAlbumDto updateAlbumDto)
         {

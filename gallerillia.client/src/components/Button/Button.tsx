@@ -1,16 +1,8 @@
 import { ReactNode, FC } from "react";
 import styles from "./Button.module.scss";
+import { IButtonProps } from "../../types/interfaces";
 
-type ButtonType = "button" | "submit" | "reset" | undefined;
 
-interface IButtonProps {
-    children: ReactNode;
-    handleClick?: () => void;
-    customStyles?: string;
-    type?: ButtonType;
-    title: string;
-    disabled?: boolean;
-}
 
 export const Button: FC<IButtonProps> = (props: IButtonProps) => {
     return (

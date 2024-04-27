@@ -6,12 +6,9 @@ import {
     BiDownvote,
     BiSolidDownvote,
 } from "react-icons/bi";
+import { VoteProps } from "../../types/interfaces";
 
-export interface VoteProps {
-    isVoted: boolean;
-    isPositive: boolean;
-    votesCount: number;
-}
+
 export const VoteButton: FC<VoteProps> = (props: VoteProps) => {
 
 

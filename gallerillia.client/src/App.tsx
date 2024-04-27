@@ -5,22 +5,9 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Suspense, lazy, useState } from "react";
 
-export interface IHeaderProps {
-    isLogged: boolean;
-    setIsLogged: (isLogged: boolean) => void;
-    currentPage: string;
-    setCurrentPage: (currentPage: string) => void;
-}
 
-export interface IPageProps {
-    isLogged: boolean;
-}
 
-export interface IAuthProps {
-    setIsLogged: (isLogged: boolean) => void;
-    currentPage: string;
-    setCurrentPage: (currentPage: string) => void;
-}
+
 
 const Login = lazy(
     () => import(/* webpackChunkName: "Login" */ "./layout/Auth/Login")
