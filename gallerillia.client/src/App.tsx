@@ -57,25 +57,21 @@ function App() {
                 <Route
                     path="/login"
                     element={
-                        <Suspense>
-                            <Login
-                                setIsLogged={setIsLogged}
-                                currentPage={currentPage}
-                                setCurrentPage={setCurrentPage}
-                            />
-                        </Suspense>
+                        <Login
+                            setIsLogged={setIsLogged}
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                        />
                     }
                 />
                 <Route
                     path="/register"
                     element={
-                        <Suspense>
-                            <Register
-                                setIsLogged={setIsLogged}
-                                currentPage={currentPage}
-                                setCurrentPage={setCurrentPage}
-                            />
-                        </Suspense>
+                        <Register
+                            setIsLogged={setIsLogged}
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                        />
                     }
                 />
                 <Route
@@ -97,14 +93,7 @@ function App() {
                         </Suspense>
                     }
                 />
-                <Route
-                    path="*"
-                    element={
-                        <Suspense>
-                            <NotFound />
-                        </Suspense>
-                    }
-                />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </>
     );
