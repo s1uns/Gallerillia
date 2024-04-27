@@ -41,7 +41,7 @@ namespace Gallerillia.Server.Controllers
         /// If the operation is successful, it will return a corresponding message.
         /// </remarks>
         /// <returns>An IActionResult representing the result of the operation.</returns>
-        [HttpPost("upload")]
+        [HttpPost]
         [Authorize]
         public async Task<IActionResult> CreatePicture([FromBody] CreatePictureDto createPictureDto)
         {

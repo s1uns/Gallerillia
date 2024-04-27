@@ -1,6 +1,14 @@
 .album-page {
     width: 100vw;
     height: 87vh;
+
+    .add-picture {
+        margin: 11rem 6rem -11rem;
+        .create-btn {
+            font-size: 1.5rem;
+            background-color: rgb(133, 243, 133);
+        }
+    }
     .container {
         padding-top: 13rem;
         box-sizing: border-box;

@@ -4,10 +4,7 @@ import { Home } from "./layout/Home/Home";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Suspense, lazy, useState } from "react";
-
-
-
-
+import { Cloudinary } from "@cloudinary/url-gen/instance/Cloudinary";
 
 const Login = lazy(
     () => import(/* webpackChunkName: "Login" */ "./layout/Auth/Login")
@@ -40,6 +37,11 @@ function App() {
     const user = localStorage.getItem("userId");
     const [isLogged, setIsLogged] = useState<boolean>(user?.length! > 0);
     const [currentPage, setCurrentPage] = useState<string>("Home");
+    const cld = new Cloudinary({
+        cloud: {
+            cloudName: "main",
+        },
+    });
 
     return (
         <>
@@ -80,7 +82,10 @@ function App() {
                     path="/my-albums"
                     element={
                         <Suspense>
-                            <MyAlbumsPage isLogged={isLogged} setCurrentPage={setCurrentPage}/>
+                            <MyAlbumsPage
+                                isLogged={isLogged}
+                                setCurrentPage={setCurrentPage}
+                            />
                         </Suspense>
                     }
                 />

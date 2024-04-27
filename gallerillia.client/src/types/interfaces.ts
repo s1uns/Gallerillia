@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ChangeEvent, ReactNode } from "react";
 import { ButtonType } from "./types";
 
 export interface IHeaderProps {
@@ -66,7 +66,15 @@ export interface IUpdateDialog {
     handleAgree: () => void;
     handleClose: () => void;
     currentValue: string;
-    onChangeValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChangeValue: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface IUploadDialog {
+    render: (onClick: () => void) => ReactNode;
+    handleAgree: () => void;
+    handleClose: () => void;
+    currentValue: FormData | null;
+    onChangeValue: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface IPictureProps {
@@ -77,6 +85,7 @@ export interface IPictureProps {
     downVotesCount: number;
     usersVote: "UNVOTED" | "UPVOTED" | "DOWNVOTED";
     onChange: (isDeleted: boolean) => void;
+    canBeManaged: boolean;
 }
 
 export interface IVoteProps {

@@ -2,6 +2,7 @@ import axios from "axios";
 import {
     AlbumsList,
     CreateAlbumDto,
+    CreatePictureDto,
     Pictures,
     UpdateAlbumDto,
 } from "../types/types";
@@ -70,6 +71,38 @@ export const fetchPictures = async (albumId: string, currentPage: number) => {
             },
         }
     );
+
+    return data;
+};
+
+export const uploadPicture = async (albumId: string, picture: FormData) => {
+    const bearer = localStorage.getItem("bearer");
+    const cloudifyUrl = import.meta.env.VITE_CLOUDINARY_URL;
+
+    const { data: url }: { data: string } = await axios.post<any>(
+        cloudifyUrl,
+        picture
+    );
+
+    let createPictureDto: CreatePictureDto = { albumId: albumId, imgUrl: url };
+
+    const { data } = await axios.post<string>(
+        `${url}Picture`,
+        createPictureDto,
+        {
+            headers: { Authorization: `Bearer ${bearer}` },
+        }
+    );
+
+    return data;
+};
+
+export const deletePicture = async (pictureId: string) => {
+    const bearer = localStorage.getItem("bearer");
+
+    const { data } = await axios.delete<string>(`${url}Picture/${pictureId}`, {
+        headers: { Authorization: `Bearer ${bearer}` },
+    });
 
     return data;
 };

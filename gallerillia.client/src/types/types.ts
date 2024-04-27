@@ -21,6 +21,11 @@ export type CreateAlbumDto = {
     title: string;
 };
 
+export type CreatePictureDto = {
+    albumId: string;
+    imgUrl: string;
+};
+
 export type PaginationProps = {
     currentPage: number;
     onChangePage: (page: number) => void;
