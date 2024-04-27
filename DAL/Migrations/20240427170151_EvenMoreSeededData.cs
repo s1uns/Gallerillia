@@ -49,7 +49,7 @@ namespace DAL.Migrations
                     { new Guid("0b341388-15b5-49b6-a1dc-838199038a3f"), new Guid("33333333-3333-3333-3333-333333333333"), "https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg", "Sports" },
                     { new Guid("13781f37-1c81-487a-9dfd-5fb04458a071"), new Guid("11111111-1111-1111-1111-111111111111"), "https://www.imgacademy.com/sites/default/files/img-academy-organization-schema.jpg", "History" },
                     { new Guid("456671cb-bec1-4192-840c-0d12622b2341"), new Guid("22222222-2222-2222-2222-222222222222"), "https://www.j-dphoto.com/images/news/04122015111102imgfamily00134170810526.jpg", "Art" },
-                    { new Guid("6011954d-12b7-4d95-9859-de453ac27f88"), new Guid("22222222-2222-2222-2222-222222222222"), "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg", "Food" },
+                    { new Guid("6011954d-12b7-4d95-9859-de453ac27f88"), new Guid("22222222-2222-2222-2222-222222222222"), "https://media.istockphoto.com/id/1457889029/photo/group-of-food-with-high-content-of-dietary-fiber-arranged-side-by-side.jpg?s=612x612&w=0&k=20&c=SEyObHsbBsrd1XZlgEg389VT86BMFKZKfKReKyVPAk4=", "Food" },
                     { new Guid("6758f828-de3f-4a34-96dd-578b0b5f5a27"), new Guid("22222222-2222-2222-2222-222222222222"), "https://upload.wikimedia.org/wikipedia/commons/e/e5/Creating_music.jpg", "Music" },
                     { new Guid("886741df-70ac-4cfe-830b-7c285a96d100"), new Guid("11111111-1111-1111-1111-111111111111"), "https://www.j-dphoto.com/images/news/04122015111102imgfamily00134170810526.jpg", "Science" },
                     { new Guid("bb7357f7-6a3e-4b27-a027-26e9ca140563"), new Guid("33333333-3333-3333-3333-333333333333"), "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg", "Cars" },
@@ -61,7 +61,7 @@ namespace DAL.Migrations
                 keyColumn: "Id",
                 keyValue: "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                 columns: new[] { "ConcurrencyStamp", "PasswordHash" },
-                values: new object[] { "b595f294-1a72-4fd7-9698-e480f543ebdb", "AQAAAAIAAYagAAAAEAxSL7UQplHyJseBUuRRnP+x/o4S1ge+dGEC2Tpue2pD9Dr+KCYulL+JHuS2LcqAZA==" });
+                values: new object[] { "f8888842-3f90-42be-a89b-877b7aad2b75", "AQAAAAIAAYagAAAAEEHDAW0/VTNq9+5WYub9zOSMHkuOxp20uffAwASw5CT5dCOLw0CQ6JS6Mc7pAtJGuQ==" });
 
             migrationBuilder.InsertData(
                 table: "Pictures",

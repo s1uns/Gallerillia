@@ -162,7 +162,7 @@ namespace DAL.Migrations
                         {
                             Id = new Guid("6011954d-12b7-4d95-9859-de453ac27f88"),
                             AuthorId = new Guid("22222222-2222-2222-2222-222222222222"),
-                            ImgUrl = "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg",
+                            ImgUrl = "https://media.istockphoto.com/id/1457889029/photo/group-of-food-with-high-content-of-dietary-fiber-arranged-side-by-side.jpg?s=612x612&w=0&k=20&c=SEyObHsbBsrd1XZlgEg389VT86BMFKZKfKReKyVPAk4=",
                             Title = "Food"
                         });
                 });
@@ -677,13 +677,13 @@ namespace DAL.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "b595f294-1a72-4fd7-9698-e480f543ebdb",
+                            ConcurrencyStamp = "f8888842-3f90-42be-a89b-877b7aad2b75",
                             Email = "illiateliuk@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ILLIATELIUK@GMAIL.COM",
                             NormalizedUserName = "illiateliuk@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEAxSL7UQplHyJseBUuRRnP+x/o4S1ge+dGEC2Tpue2pD9Dr+KCYulL+JHuS2LcqAZA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEEHDAW0/VTNq9+5WYub9zOSMHkuOxp20uffAwASw5CT5dCOLw0CQ6JS6Mc7pAtJGuQ==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

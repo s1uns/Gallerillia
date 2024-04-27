@@ -89,7 +89,7 @@ namespace DAL
                 new Album { Id = new Guid("0b341388-15b5-49b6-a1dc-838199038a3f"), AuthorId = new Guid("33333333-3333-3333-3333-333333333333"), Title = "Sports", ImgUrl = "https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg" },
                 new Album { Id = new Guid("bb7357f7-6a3e-4b27-a027-26e9ca140563"), AuthorId = new Guid("33333333-3333-3333-3333-333333333333"), Title = "Cars", ImgUrl = "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg" },
                 new Album { Id = new Guid("e1541da6-4614-449a-b43c-7b70b905cb90"), AuthorId = new Guid("11111111-1111-1111-1111-111111111111"), Title = "Animals", ImgUrl = "https://imageio.forbes.com/specials-images/imageserve/5faad4255239c9448d6c7bcd/Best-Animal-Photos-Contest--Close-Up-Of-baby-monkey/960x0.jpg?format=jpg&width=960" },
-                new Album { Id = new Guid("6011954d-12b7-4d95-9859-de453ac27f88"), AuthorId = new Guid("22222222-2222-2222-2222-222222222222"), Title = "Food" , ImgUrl = "https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" }
+                new Album { Id = new Guid("6011954d-12b7-4d95-9859-de453ac27f88"), AuthorId = new Guid("22222222-2222-2222-2222-222222222222"), Title = "Food" , ImgUrl = "https://media.istockphoto.com/id/1457889029/photo/group-of-food-with-high-content-of-dietary-fiber-arranged-side-by-side.jpg?s=612x612&w=0&k=20&c=SEyObHsbBsrd1XZlgEg389VT86BMFKZKfKReKyVPAk4=" }
                 );
 
             builder.Entity<Picture>().HasData(
