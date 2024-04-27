@@ -10,7 +10,6 @@ namespace Infrustructure.Dto.Picture
     public record PictureDto
     (
         Guid Id,
-        Guid AuthorId,
         string ImgUrl,
         int UpVotesCount,
         int DownVotesCount,

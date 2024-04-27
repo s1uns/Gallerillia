@@ -3,6 +3,7 @@
     public record PicturesListDto
     (
       IList<PictureDto> Pictures, 
-      int TotalPages
+      int TotalPages,
+      Guid AuthorId
     );
 }

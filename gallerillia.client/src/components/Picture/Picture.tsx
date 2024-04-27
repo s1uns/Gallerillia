@@ -11,12 +11,17 @@ import { Button } from "../Button/Button";
 export const Picture: FC<IPictureProps> = (props: IPictureProps) => {
     const userId = localStorage.getItem("userId");
 
-    const onUpVote = () => {
+    const onVote = (vote: string) => {
+        if (!userId) {
+            toast.warn("You should be authorized to vote the pictures.");
+            return;
+        }
+
         if (props.authorId == userId) {
             toast.warn("Cannot vote your picture.");
             return;
         }
-        const response = votePicture(props.id, "UPVOTED", props.usersVote);
+        const response = votePicture(props.id, vote, props.usersVote);
         response
             .then((data) => {
                 toast.success(data);
@@ -28,24 +33,6 @@ export const Picture: FC<IPictureProps> = (props: IPictureProps) => {
                 }
             });
         props.onChange(false);
-    };
-
-    const onDownVote = () => {
-        if (props.authorId == userId) {
-            toast.warn("Cannot vote your picture.");
-            return;
-        }
-        const response = votePicture(props.id, "DOWNVOTED", props.usersVote);
-        response
-            .then((data) => {
-                toast.success(data);
-            })
-            .catch((error: any) => {
-                if (error.response) {
-                    toast.error(error.response.data);
-                }
-            });
-        props.onChange(true);
     };
 
     const onPictureDelete = () => {
@@ -74,13 +61,13 @@ export const Picture: FC<IPictureProps> = (props: IPictureProps) => {
                 </div>
                 <div className={styles["votes"]}>
                     <VoteButton
-                        handleClick={onUpVote}
+                        handleClick={() => onVote("UPVOTED")}
                         isVoted={props.usersVote == "UPVOTED"}
                         isPositive={true}
                         votesCount={props.upVotesCount}
                     />
                     <VoteButton
-                        handleClick={onDownVote}
+                        handleClick={() => onVote("DOWNVOTED")}
                         isVoted={props.usersVote == "DOWNVOTED"}
                         isPositive={false}
                         votesCount={props.downVotesCount}

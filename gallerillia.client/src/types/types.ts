@@ -10,6 +10,7 @@ export type AlbumsList = {
 export type Pictures = {
     pictures: IPictureProps[];
     totalPages: number;
+    authorId: string;
 };
 
 export type UpdateAlbumDto = {

@@ -16,6 +16,7 @@ const AlbumPage: FC = () => {
     const [picturesList, setPicturesList] = useState<Pictures>({
         pictures: [],
         totalPages: 1,
+        authorId: "",
     });
     const [picture, setPicture] = useState<any[]>([]);
     const [shouldReload, setShouldReload] = useState(false);
@@ -63,23 +64,25 @@ const AlbumPage: FC = () => {
 
     return (
         <div className={styles["album-page"]}>
-            <div className={styles["add-picture"]}>
-                <DrugNDropWindow
-                    handleAgree={onPictureCreate}
-                    render={(handleClick) => (
-                        <Button
-                            customStyles={styles["create-btn"]}
-                            title={"Upload picture"}
-                            handleClick={handleClick}
-                        >
-                            Delete
-                        </Button>
-                    )}
-                    handleClose={() => setPicture([])}
-                    currentValue={null}
-                    onChangeValue={() => handleChange}
-                ></DrugNDropWindow>
-            </div>
+            {picturesList.authorId == userId ? (
+                <div className={styles["add-picture"]}>
+                    <DrugNDropWindow
+                        handleAgree={onPictureCreate}
+                        render={(handleClick) => (
+                            <Button
+                                customStyles={styles["create-btn"]}
+                                title={"Upload picture"}
+                                handleClick={handleClick}
+                            >
+                                Upload picture
+                            </Button>
+                        )}
+                        handleClose={() => setPicture([])}
+                        currentValue={null}
+                        onChangeValue={() => handleChange}
+                    ></DrugNDropWindow>
+                </div>
+            ) : null}
             <div className={styles["container"]}>
                 {picturesList.pictures.length > 0 ? (
                     <>
@@ -88,14 +91,14 @@ const AlbumPage: FC = () => {
                                 <Picture
                                     key={picture.id}
                                     id={picture.id}
-                                    authorId={picture.authorId}
+                                    authorId={picturesList.authorId}
                                     imgUrl={picture.imgUrl}
                                     upVotesCount={picture.upVotesCount}
                                     downVotesCount={picture.downVotesCount}
                                     usersVote={picture.usersVote}
                                     onChange={setShouldReload}
                                     canBeManaged={
-                                        userId == picture.authorId ||
+                                        userId == picturesList.authorId ||
                                         userRole == "Administrator"
                                     }
                                 />

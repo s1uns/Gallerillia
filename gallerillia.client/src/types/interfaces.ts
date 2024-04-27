@@ -92,5 +92,5 @@ export interface IVoteProps {
     isVoted: boolean;
     isPositive: boolean;
     votesCount: number;
-    handleClick: () => void;
+    handleClick: (vote: string) => void;
 }

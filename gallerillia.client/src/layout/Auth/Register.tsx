@@ -138,7 +138,13 @@ const Register: FC<IAuthProps> = (props: IAuthProps) => {
                         </Button>
                         <Grid container justifyContent="flex-end">
                             <Grid item>
-                                <Link to="/login" className={styles["Link"]}>
+                                <Link
+                                    onClick={() =>
+                                        props.setCurrentPage("Login")
+                                    }
+                                    to="/login"
+                                    className={styles["Link"]}
+                                >
                                     Already have an account? Login
                                 </Link>
                             </Grid>

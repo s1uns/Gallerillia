@@ -107,9 +107,14 @@ namespace BLL.PictureManagement
                 var count = await query.CountAsync();
 
                 var totalPages = (count + 5 - 1) / 5;
+                var album = await _context.Albums.FirstOrDefaultAsync(a => a.Id == albumId);
 
-                var pictures = await query.Include(a => a.Votes).Include(a => a.Album).Skip(pageNumber * 5).Take(5).ToListAsync();
-                var result = new PicturesListDto(new List<PictureDto> { }, totalPages);
+                if (album is null)
+                {
+                    return AlbumServiceErrors.GetAlbumByIdError;
+                }
+                var pictures = await query.Include(a => a.Votes).Skip(pageNumber * 5).Take(5).ToListAsync();
+                var result = new PicturesListDto(new List<PictureDto> { }, totalPages, album.AuthorId);
 
                 await pictures.ForEachAsync(async (p) =>
                 {
@@ -121,7 +126,7 @@ namespace BLL.PictureManagement
                             ? nameof(VoteStatus.DOWNVOTED)
                             : nameof(VoteStatus.UNVOTED);
 
-                    result.Pictures.Add(new PictureDto(p.Id, p.Album.AuthorId, p.ImgUrl, upvotesCount, downvotesCount, userVoteStatus));
+                    result.Pictures.Add(new PictureDto(p.Id, p.ImgUrl, upvotesCount, downvotesCount, userVoteStatus));
                 });
 
 
