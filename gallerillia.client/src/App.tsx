@@ -57,21 +57,25 @@ function App() {
                 <Route
                     path="/login"
                     element={
-                        <Login
-                            setIsLogged={setIsLogged}
-                            currentPage={currentPage}
-                            setCurrentPage={setCurrentPage}
-                        />
+                        <Suspense>
+                            <Login
+                                setIsLogged={setIsLogged}
+                                currentPage={currentPage}
+                                setCurrentPage={setCurrentPage}
+                            />
+                        </Suspense>
                     }
                 />
                 <Route
                     path="/register"
                     element={
-                        <Register
-                            setIsLogged={setIsLogged}
-                            currentPage={currentPage}
-                            setCurrentPage={setCurrentPage}
-                        />
+                        <Suspense>
+                            <Register
+                                setIsLogged={setIsLogged}
+                                currentPage={currentPage}
+                                setCurrentPage={setCurrentPage}
+                            />
+                        </Suspense>
                     }
                 />
                 <Route

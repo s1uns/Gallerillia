@@ -49,6 +49,7 @@ export const AlbumList: FC<IAlbumListProps> = (props: IAlbumListProps) => {
             response
                 .then((data) => {
                     setAlbumsList(data);
+
                 })
                 .catch((error: any) => {
                     if (error.response) {
@@ -61,7 +62,6 @@ export const AlbumList: FC<IAlbumListProps> = (props: IAlbumListProps) => {
                 });
         }
 
-        setShouldReload(false);
     }, [currentPage, shouldReload, props.shouldRefill]);
 
     return (

@@ -40,13 +40,14 @@ export const Picture: FC<IPictureProps> = (props: IPictureProps) => {
         response
             .then((data) => {
                 toast.success(data);
+                props.onChange(true);
             })
             .catch((error: any) => {
                 if (error.response) {
                     toast.error(error.response.data);
                 }
             });
-        props.onChange(true);
+        props.onChange(false);
     };
 
     return (

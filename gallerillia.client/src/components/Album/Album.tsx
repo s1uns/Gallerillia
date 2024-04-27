@@ -40,6 +40,7 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
         response
             .then((data) => {
                 toast.success(data);
+                props.onChange(true);
             })
             .catch((error: any) => {
                 if (error.response) {
@@ -48,7 +49,7 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
             });
         setNewAlbumTitle("");
 
-        props.onChange(true);
+        props.onChange(false);
     };
 
     const updateTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {

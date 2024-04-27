@@ -56,7 +56,6 @@ const AlbumPage: FC = () => {
                         toast.error(error.response.data.message);
                     }
                 });
-            setShouldReload(false);
         } else {
             toast.error("Couldn't load the pictures, try again later!");
         }
