@@ -10,7 +10,7 @@ export const Pagination: FC<PaginationProps> = ({
 }) => {
     return (
         <ReactPaginate
-            className={styles.pagination}
+            className={styles["pagination"]}
             breakLabel="..."
             nextLabel=">"
             onPageChange={(event) => onChangePage(event.selected)}

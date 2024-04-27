@@ -18,15 +18,15 @@ export const Header: FC<IHeaderProps> = (props: IHeaderProps) => {
     };
 
     return (
-        <div className={styles.header}>
-            <div className={styles.container}>
-                <div className={styles.logo__container}>
+        <div className={styles["header"]}>
+            <div className={styles["container"]}>
+                <div className={styles["logo__container"]}>
                     <img src={logo} alt="logo" />
                 </div>
                 <div className={styles["current-page"]}>
                     <h1>{props.currentPage}</h1>
                 </div>
-                <nav className={styles.nav}>
+                <nav className={styles["nav"]}>
                     <Link
                         className={styles["nav-link"]}
                         to="/"
@@ -49,7 +49,7 @@ export const Header: FC<IHeaderProps> = (props: IHeaderProps) => {
                         My Albums
                     </Link>
                 </nav>
-                <div className={styles.auth}>
+                <div className={styles["auth"]}>
                     {props.isLogged ? (
                         <div>
                             <Button

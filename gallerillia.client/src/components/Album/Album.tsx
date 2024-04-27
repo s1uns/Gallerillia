@@ -9,7 +9,7 @@ import { IAlbumProps } from "../../types/interfaces";
 import { TitleDialogWindow } from "../DialogWindow/TitleDialogWindow";
 
 export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
-    const [newAlbumTitle, setNewAlbumTitle] = useState("");
+    const [newAlbumTitle, setNewAlbumTitle] = useState(props.title);
 
     const onAlbumDelete = () => {
         const response = deleteAlbum(props.id);
@@ -36,6 +36,11 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
             );
             return;
         }
+
+        if (newAlbumTitle == props.title) {
+            return;
+        }
+
         const response = updateAlbum({ Id: props.id, title: newAlbumTitle });
         response
             .then((data) => {
@@ -87,7 +92,7 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
                     <TitleDialogWindow
                         entityName="album"
                         handleAgree={onAlbumUpdate}
-                        handleClose={() => setNewAlbumTitle("")}
+                        handleClose={() => setNewAlbumTitle(props.title)}
                         currentValue={newAlbumTitle}
                         onChangeValue={updateTitleInput}
                         render={(handleClick) => (

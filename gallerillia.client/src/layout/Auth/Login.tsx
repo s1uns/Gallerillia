@@ -103,7 +103,7 @@ const Login: FC<IAuthProps> = (props: IAuthProps) => {
                         />
 
                         <Button
-                            customStyles={styles.Button}
+                            customStyles={styles["Button"]}
                             handleClick={handleLogin}
                             title="Login"
                         >

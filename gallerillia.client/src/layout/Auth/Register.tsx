@@ -130,7 +130,7 @@ const Register: FC<IAuthProps> = (props: IAuthProps) => {
                             </Grid>
                         </Grid>
                         <Button
-                            customStyles={styles.Button}
+                            customStyles={styles["Button"]}
                             handleClick={handleSignUp}
                             title="SignUp"
                         >
