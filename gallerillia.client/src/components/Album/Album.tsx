@@ -32,7 +32,7 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
             newAlbumTitle.trim().length > 19
         ) {
             toast.error(
-                "The album title should be between 5 and 50 characters long"
+                "The album title should be between 3 and 50 characters long"
             );
             return;
         }
