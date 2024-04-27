@@ -216,19 +216,18 @@ namespace BLL.PictureManagement
 
                     switch (voteStatus)
                     {
-                        case "upvote":
-                        case "downvoted":
+                        case "UPVOTED":
+                        case "DOWNVOTED":
                             vote = new Vote
                             {
                                 UserId = userId,
                                 PictureId = pictureId,
-                                IsPositive = voteStatus == "upvote"
+                                IsPositive = voteStatus == "UPVOTED"
                             };
                             await _context.Votes.AddAsync(vote);
                             picture.Votes.Add(vote);
                             break;
-
-                        case "unvote":
+                        case "UNVOTED":
                             return PictureServiceErrors.RestractVoteError;
 
                         default:
@@ -240,12 +239,12 @@ namespace BLL.PictureManagement
 
                     switch (voteStatus)
                     {
-                        case "upvote":
-                        case "downvote":
-                            vote.IsPositive = voteStatus == "upvote";
+                        case "UPVOTED":
+                        case "DOWNVOTED":
+                            vote.IsPositive = voteStatus == "UPVOTED";
                             break;
 
-                        case "unvote":
+                        case "UNVOTED":
                             _context.Votes.Remove(vote);
                             break;
 

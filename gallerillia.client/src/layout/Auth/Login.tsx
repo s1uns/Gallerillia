@@ -39,6 +39,7 @@ const Login: FC<IAuthProps> = (props: IAuthProps) => {
                 }
             });
     };
+    props.setCurrentPage("Login");
 
     return (
         <>

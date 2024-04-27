@@ -8,20 +8,23 @@ import { IAlbumListProps } from "../../types/interfaces";
 import { AlbumsList } from "../../types/types";
 import { fetchAlbums, fetchOwnAlbums } from "../../services/api";
 
-
-
 export const AlbumList: FC<IAlbumListProps> = (props: IAlbumListProps) => {
     const userId = localStorage.getItem("userId");
     const userRole = localStorage.getItem("userRole");
-    const [reload, setReload] = useState(true);
+    const [shouldReload, setShouldReload] = useState(true);
     const [currentPage, setCurrentPage] = useState<number>(0);
     const onChangePage = (page: number) => {
         setCurrentPage(page);
     };
+
     const [albumsList, setAlbumsList] = useState<AlbumsList>({
         albums: [],
         totalPages: 1,
     });
+
+    if (currentPage >= albumsList.totalPages && albumsList.totalPages != 0) {
+        setCurrentPage(albumsList.totalPages - 1);
+    }
 
     useEffect(() => {
         if (props.albumsType == "my-albums") {
@@ -58,14 +61,14 @@ export const AlbumList: FC<IAlbumListProps> = (props: IAlbumListProps) => {
                 });
         }
 
-        setReload(false)
-    }, [currentPage, reload]);
+        setShouldReload(false);
+    }, [currentPage, shouldReload, props.shouldRefill]);
 
     return (
         <div className={styles["container"]}>
             <div className={styles["albums"]}>
                 <div className={styles["albums__list"]}>
-                    {albumsList.albums.length > 0 ? (
+                    {albumsList.albums.length > 0 ?  (
                         <>
                             {albumsList.albums.map((album) => (
                                 <Album
@@ -79,7 +82,7 @@ export const AlbumList: FC<IAlbumListProps> = (props: IAlbumListProps) => {
                                         userId == album.authorId ||
                                         userRole == "Administrator"
                                     }
-                                    onChange={setReload}
+                                    onChange={setShouldReload}
                                 />
                             ))}
                         </>

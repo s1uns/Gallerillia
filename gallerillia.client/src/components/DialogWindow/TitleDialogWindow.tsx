@@ -71,7 +71,10 @@ export const TitleDialogWindow: FC<IUpdateDialog> = (props: IUpdateDialog) => {
                     <Button
                         style={{ fontSize: "2rem" }}
                         sx={{ color: "black" }}
-                        onClick={handleClose}
+                        onClick={() => {
+                            props.handleClose();
+                            handleClose();
+                        }}
                     >
                         Cancel
                     </Button>

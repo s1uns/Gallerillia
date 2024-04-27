@@ -1,5 +1,10 @@
 import axios from "axios";
-import { AlbumsList, Pictures, UpdateAlbumDto } from "../types/types";
+import {
+    AlbumsList,
+    CreateAlbumDto,
+    Pictures,
+    UpdateAlbumDto,
+} from "../types/types";
 
 const url = import.meta.env.VITE_ASPNETCORE_HTTPS_PORT
     ? import.meta.env.VITE_ASPNETCORE_HTTPS_PORT
@@ -24,10 +29,10 @@ export const fetchOwnAlbums = async (currentPage: number) => {
     return data;
 };
 
-export const deleteAlbum = async (albumId: string) => {
+export const createAlbum = async (createAlbumDto: CreateAlbumDto) => {
     const bearer = localStorage.getItem("bearer");
 
-    const { data } = await axios.delete<string>(`${url}Album/${albumId}`, {
+    const { data } = await axios.post<string>(`${url}Album`, createAlbumDto, {
         headers: { Authorization: `Bearer ${bearer}` },
     });
 
@@ -38,6 +43,16 @@ export const updateAlbum = async (updateAlbumDto: UpdateAlbumDto) => {
     const bearer = localStorage.getItem("bearer");
 
     const { data } = await axios.put<string>(`${url}Album`, updateAlbumDto, {
+        headers: { Authorization: `Bearer ${bearer}` },
+    });
+
+    return data;
+};
+
+export const deleteAlbum = async (albumId: string) => {
+    const bearer = localStorage.getItem("bearer");
+
+    const { data } = await axios.delete<string>(`${url}Album/${albumId}`, {
         headers: { Authorization: `Bearer ${bearer}` },
     });
 
@@ -59,13 +74,23 @@ export const fetchPictures = async (albumId: string, currentPage: number) => {
     return data;
 };
 
-export const voteThePicture = async (pictureId: string, voteStatus: string) => {
+export const votePicture = async (
+    pictureId: string,
+    voteStatus: string,
+    usersVote: string
+) => {
     const bearer = localStorage.getItem("bearer");
+    let requestUrl: string;
 
-    const { data } = await axios.post<string>(
-        `${url}Picture/vote?pictureId=${pictureId}&voteStatus=${voteStatus}`,
-        { headers: { Authorization: `Bearer ${bearer}` } }
-    );
+    if (voteStatus == usersVote) {
+        requestUrl = `${url}Picture/vote?pictureId=${pictureId}&voteStatus=UNVOTED`;
+    } else {
+        requestUrl = `${url}Picture/vote?pictureId=${pictureId}&voteStatus=${voteStatus}`;
+    }
+
+    const { data } = await axios.get<string>(requestUrl, {
+        headers: { Authorization: `Bearer ${bearer}` },
+    });
 
     return data;
 };

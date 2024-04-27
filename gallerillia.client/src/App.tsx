@@ -80,7 +80,7 @@ function App() {
                     path="/my-albums"
                     element={
                         <Suspense>
-                            <MyAlbumsPage />
+                            <MyAlbumsPage isLogged={isLogged} setCurrentPage={setCurrentPage}/>
                         </Suspense>
                     }
                 />

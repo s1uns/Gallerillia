@@ -1,4 +1,11 @@
 .album-page {
     width: 100vw;
-    height: 87vh;
+    .add-album {
+        margin: 11rem 6rem -11rem;
+        z-index: 1000;
+        .create-btn {
+            font-size: 1.5rem;
+            background-color: rgb(133, 243, 133);
+        }
+    }
 }

@@ -60,17 +60,21 @@
             }
         }
     }
+    
     .manage-btns {
         margin-top: 3rem;
         width: 100%;
+
         .update-btn,
         .delete-btn {
             width: 100%;
             font-size: 1.5rem;
         }
+
         .update-btn {
             background-color: rgba(248, 212, 112, 0.875);
         }
+
         .delete-btn {
             margin-top: 1rem;
             background-color: rgb(250, 136, 136);

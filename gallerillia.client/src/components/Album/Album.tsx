@@ -9,7 +9,7 @@ import { IAlbumProps } from "../../types/interfaces";
 import { TitleDialogWindow } from "../DialogWindow/TitleDialogWindow";
 
 export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
-    const [newTitle, setNewTitle] = useState("");
+    const [newAlbumTitle, setNewAlbumTitle] = useState("");
 
     const onAlbumDelete = () => {
         const response = deleteAlbum(props.id);
@@ -26,13 +26,13 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
     };
 
     const onAlbumUpdate = () => {
-        if (newTitle.trim().length < 5 || newTitle.trim().length > 19) {
+        if (newAlbumTitle.trim().length < 5 || newAlbumTitle.trim().length > 19) {
             toast.error(
                 "The album title should be between 5 and 50 characters long"
             );
             return;
         }
-        const response = updateAlbum({ Id: props.id, title: newTitle });
+        const response = updateAlbum({ Id: props.id, title: newAlbumTitle });
         response
             .then((data) => {
                 toast.success(data);
@@ -42,11 +42,13 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
                     toast.error(error.response.data);
                 }
             });
+        setNewAlbumTitle("");
+
         props.onChange(true);
     };
 
     const updateTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setNewTitle((oldTitle) => e.target.value);
+        setNewAlbumTitle((oldTitle) => e.target.value);
     };
 
     return (
@@ -80,7 +82,8 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
                     <TitleDialogWindow
                         entityName="album"
                         handleAgree={onAlbumUpdate}
-                        currentValue={newTitle}
+                        handleClose={() => setNewAlbumTitle("")}
+                        currentValue={newAlbumTitle}
                         onChangeValue={updateTitleInput}
                         render={(handleClick) => (
                             <Button

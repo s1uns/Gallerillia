@@ -17,6 +17,10 @@ export type UpdateAlbumDto = {
     title: string;
 };
 
+export type CreateAlbumDto = {
+    title: string;
+};
+
 export type PaginationProps = {
     currentPage: number;
     onChangePage: (page: number) => void;

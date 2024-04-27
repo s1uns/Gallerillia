@@ -1,10 +1,46 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./Picture.module.scss";
 import { VoteButton } from "../VoteButton/VoteButton";
-import { PictureProps } from "../../types/interfaces";
+import { IPictureProps } from "../../types/interfaces";
+import { toast } from "react-toastify";
+import { votePicture } from "../../services/api";
 
-export const Picture: FC<PictureProps> = (props: PictureProps) => {
+export const Picture: FC<IPictureProps> = (props: IPictureProps) => {
     const userId = localStorage.getItem("userId");
+    const onUpVote = () => {
+        if (props.authorId == userId) {
+            toast.warn("Cannot vote your picture.");
+            return;
+        }
+        const response = votePicture(props.id, "UPVOTED", props.usersVote);
+        response
+            .then((data) => {
+                toast.success(data);
+            })
+            .catch((error: any) => {
+                if (error.response) {
+                    toast.error(error.response.data);
+                }
+            });
+        props.onChange(true);
+    };
+    const onDownVote = () => {
+        if (props.authorId == userId) {
+            toast.warn("Cannot vote your picture.");
+            return;
+        }
+        const response = votePicture(props.id, "DOWNVOTED", props.usersVote);
+        response
+            .then((data) => {
+                toast.success(data);
+            })
+            .catch((error: any) => {
+                if (error.response) {
+                    toast.error(error.response.data);
+                }
+            });
+        props.onChange(true);
+    };
 
     return (
         <div className={styles["picture"]}>
@@ -18,11 +54,13 @@ export const Picture: FC<PictureProps> = (props: PictureProps) => {
                 </div>
                 <div className={styles["votes"]}>
                     <VoteButton
+                        handleClick={onUpVote}
                         isVoted={props.usersVote == "UPVOTED"}
                         isPositive={true}
                         votesCount={props.upVotesCount}
                     />
                     <VoteButton
+                        handleClick={onDownVote}
                         isVoted={props.usersVote == "DOWNVOTED"}
                         isPositive={false}
                         votesCount={props.downVotesCount}

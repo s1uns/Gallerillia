@@ -3,9 +3,10 @@ import { Pagination } from "../../components/Pagination/Pagination";
 import styles from "./AlbumPage.module.scss";
 import { Picture } from "../../components/Picture/Picture";
 import { useParams } from "react-router-dom";
-import { Pictures, fetchPictures } from "../../services/api";
+import { fetchPictures } from "../../services/api";
 import { toast } from "react-toastify";
 import { PicturesNotFound } from "../NotFound/PicturesNotFound";
+import { Pictures } from "../../types/types";
 
 const AlbumPage: FC = () => {
     const { id } = useParams();
@@ -14,6 +15,7 @@ const AlbumPage: FC = () => {
         pictures: [],
         totalPages: 1,
     });
+    const [shouldReload, setShouldReload] = useState(true);
 
     const onChangePage = (page: number) => {
         setCurrentPage(page);
@@ -30,10 +32,11 @@ const AlbumPage: FC = () => {
                         toast.error(error.response.data.message);
                     }
                 });
+            setShouldReload(false);
         } else {
             toast.error("Couldn't load the pictures, try again later!");
         }
-    }, [id, currentPage]);
+    }, [id, currentPage, shouldReload]);
 
     return (
         <div className={styles["album-page"]}>
@@ -42,7 +45,16 @@ const AlbumPage: FC = () => {
                     <>
                         <div className={styles["pictures__list"]}>
                             {picturesList.pictures.map((picture) => (
-                                <Picture key={picture.id} {...picture} />
+                                <Picture
+                                    key={picture.id}
+                                    id={picture.id}
+                                    authorId={picture.authorId}
+                                    imgUrl={picture.imgUrl}
+                                    upVotesCount={picture.upVotesCount}
+                                    downVotesCount={picture.downVotesCount}
+                                    usersVote={picture.usersVote}
+                                    onChange={setShouldReload}
+                                />
                             ))}
                         </div>
                         <Pagination

@@ -10,6 +10,7 @@ export interface IHeaderProps {
 
 export interface IPageProps {
     isLogged: boolean;
+    setCurrentPage: (currentPage: string) => void;
 }
 
 export interface IAuthProps {
@@ -29,6 +30,7 @@ export interface IAlbumProps {
 }
 
 export interface IAlbumListProps {
+    shouldRefill: boolean;
     albumsType: "all-albums" | "my-albums";
 }
 
@@ -62,6 +64,7 @@ export interface IUpdateDialog {
     entityName: string;
     render: (onClick: () => void) => ReactNode;
     handleAgree: () => void;
+    handleClose: () => void;
     currentValue: string;
     onChangeValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -73,10 +76,12 @@ export interface IPictureProps {
     upVotesCount: number;
     downVotesCount: number;
     usersVote: "UNVOTED" | "UPVOTED" | "DOWNVOTED";
+    onChange: (isDeleted: boolean) => void;
 }
 
 export interface IVoteProps {
     isVoted: boolean;
     isPositive: boolean;
     votesCount: number;
+    handleClick: () => void;
 }

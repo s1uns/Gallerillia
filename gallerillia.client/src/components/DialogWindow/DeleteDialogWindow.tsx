@@ -52,6 +52,7 @@ export const DeleteDialogWindow: FC<IDeleteDialog> = (props: IDeleteDialog) => {
                         Cancel
                     </Button>
                     <Button
+                        type="submit"
                         style={{ fontSize: "2rem" }}
                         sx={{ color: "black" }}
                         onClick={() => {
