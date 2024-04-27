@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 export const Home: FC = () => {
     return (
         <div className={styles["album-page"]}>
-            <AlbumList albumsType="all-albums" />
+            <AlbumList albumsType="all-albums" shouldRefill={false} />
         </div>
     );
 };

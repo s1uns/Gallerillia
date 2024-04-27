@@ -18,7 +18,7 @@ const AlbumPage: FC = () => {
         totalPages: 1,
     });
     const [picture, setPicture] = useState<any[]>([]);
-    const [shouldReload, setShouldReload] = useState(true);
+    const [shouldReload, setShouldReload] = useState(false);
     const userId = localStorage.getItem("userId");
     const userRole = localStorage.getItem("userRole");
     const onChangePage = (page: number) => {

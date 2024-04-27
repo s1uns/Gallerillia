@@ -16,17 +16,21 @@ export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
         response
             .then((data) => {
                 toast.success(data);
+                props.onChange(true);
             })
             .catch((error: any) => {
                 if (error.response) {
                     toast.error(error.response.data);
                 }
             });
-        props.onChange(true);
+        props.onChange(false);
     };
 
     const onAlbumUpdate = () => {
-        if (newAlbumTitle.trim().length < 5 || newAlbumTitle.trim().length > 19) {
+        if (
+            newAlbumTitle.trim().length < 5 ||
+            newAlbumTitle.trim().length > 19
+        ) {
             toast.error(
                 "The album title should be between 5 and 50 characters long"
             );
