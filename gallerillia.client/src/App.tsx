@@ -11,7 +11,7 @@ const Login = lazy(
 );
 
 const Register = lazy(
-    () => import(/* webpackChunkName: "Login" */ "./layout/Auth/Register")
+    () => import(/* webpackChunkName: "Register" */ "./layout/Auth/Register")
 );
 
 const AlbumPage = lazy(
