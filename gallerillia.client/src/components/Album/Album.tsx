@@ -1,7 +1,10 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./Album.module.scss";
 import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
+import { DeleteDialogWindow } from "../DialogWindow/DeleteDialogWindow";
+import { deleteAlbum } from "../../services/api";
+import { toast } from "react-toastify";
 
 export interface AlbumProps {
     id: string;
@@ -10,9 +13,23 @@ export interface AlbumProps {
     author: string;
     authorId: string;
     canBeDeleted: boolean;
+    onDelete: (isDeleted: boolean) => void ;
 }
 
 export const Album: FC<AlbumProps> = (props: AlbumProps) => {
+    const onAlbumdelete = () => {
+        const response = deleteAlbum(props.id);
+        props.onDelete(true);
+        response
+            .then((data) => {
+                toast.success(data);
+            })
+            .catch((error: any) => {
+                if (error.response) {
+                    toast.error(error.response.data);
+                }
+            });
+    };
     return (
         <div className={styles["album"]}>
             <Link to={`/pictures/${props.id}`}>
@@ -45,14 +62,22 @@ export const Album: FC<AlbumProps> = (props: AlbumProps) => {
                         customStyles={styles["update-btn"]}
                         title={"Delete album"}
                     >
-                        Delete
+                        Update
                     </Button>
-                    <Button
-                        customStyles={styles["delete-btn"]}
-                        title={"Delete album"}
-                    >
-                        Delete
-                    </Button>
+
+                    <DeleteDialogWindow
+                        entityName="album"
+                        handleAgree={onAlbumdelete}
+                        render={(handleClick) => (
+                            <Button
+                                customStyles={styles["delete-btn"]}
+                                title={"Delete album"}
+                                handleClick={handleClick}
+                            >
+                                Delete
+                            </Button>
+                        )}
+                    ></DeleteDialogWindow>
                 </div>
             ) : null}
         </div>

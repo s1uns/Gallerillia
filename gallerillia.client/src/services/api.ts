@@ -35,6 +35,16 @@ export const fetchOwnAlbums = async (currentPage: number) => {
     return data;
 };
 
+export const deleteAlbum = async (albumId: string) => {
+    const bearer = localStorage.getItem("bearer");
+
+    const { data } = await axios.delete<string>(`${url}Album/${albumId}`, {
+        headers: { Authorization: `Bearer ${bearer}` },
+    });
+
+    return data;
+};
+
 export const fetchPictures = async (albumId: string, currentPage: number) => {
     const bearer = localStorage.getItem("bearer");
 

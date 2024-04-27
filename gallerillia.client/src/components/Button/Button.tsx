@@ -3,7 +3,7 @@ import styles from "./Button.module.scss";
 
 type ButtonType = "button" | "submit" | "reset" | undefined;
 
-interface ButtonProps {
+interface IButtonProps {
     children: ReactNode;
     handleClick?: () => void;
     customStyles?: string;
@@ -12,7 +12,7 @@ interface ButtonProps {
     disabled?: boolean;
 }
 
-export const Button: FC<ButtonProps> = (props: ButtonProps) => {
+export const Button: FC<IButtonProps> = (props: IButtonProps) => {
     return (
         <button
             onClick={props?.handleClick}
