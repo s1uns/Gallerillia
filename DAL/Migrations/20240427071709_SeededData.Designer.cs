@@ -4,6 +4,7 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240427071709_SeededData")]
+    partial class SeededData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -182,44 +185,8 @@ namespace DAL.Migrations
                         new
                         {
                             Id = new Guid("aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
-                            AlbumId = new Guid("88888888-8888-8888-8888-888888888888"),
+                            AlbumId = new Guid("33333333-3333-3333-3333-333333333333"),
                             ImgUrl = "https://www.imgacademy.com/sites/default/files/img-academy-organization-schema.jpg"
-                        },
-                        new
-                        {
-                            Id = new Guid("afad7ba2-98aa-4010-b965-0c5c223eace3"),
-                            AlbumId = new Guid("88888888-8888-8888-8888-888888888888"),
-                            ImgUrl = "https://www.imgacademy.com/sites/default/files/img-academy-organization-schema.jpg"
-                        },
-                        new
-                        {
-                            Id = new Guid("462ba917-573f-4e76-8f6c-a1d9323c1b3b"),
-                            AlbumId = new Guid("66666666-6666-6666-6666-666666666666"),
-                            ImgUrl = "https://www.imgacademy.com/sites/default/files/img-academy-organization-schema.jpg"
-                        },
-                        new
-                        {
-                            Id = new Guid("60ca3fde-6539-4651-8e1a-0fd6e116d41f"),
-                            AlbumId = new Guid("66666666-6666-6666-6666-666666666666"),
-                            ImgUrl = "https://www.imgacademy.com/sites/default/files/img-academy-organization-schema.jpg"
-                        },
-                        new
-                        {
-                            Id = new Guid("c263fcb6-4360-416d-8274-b6c1cbed34eb"),
-                            AlbumId = new Guid("66666666-6666-6666-6666-666666666666"),
-                            ImgUrl = "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
-                        },
-                        new
-                        {
-                            Id = new Guid("da743ff3-7330-4c10-aa7b-44eee6bfa727"),
-                            AlbumId = new Guid("66666666-6666-6666-6666-666666666666"),
-                            ImgUrl = "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
-                        },
-                        new
-                        {
-                            Id = new Guid("09b0ce84-1a29-424d-a149-47daf09a9adb"),
-                            AlbumId = new Guid("88888888-8888-8888-8888-888888888888"),
-                            ImgUrl = "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
                         });
                 });
 
@@ -411,13 +378,13 @@ namespace DAL.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "69c82957-43ea-4f23-9efc-0eac834e3486",
+                            ConcurrencyStamp = "a9756c09-00dd-4b00-8c12-1d5b32a52689",
                             Email = "illiateliuk@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ILLIATELIUK@GMAIL.COM",
                             NormalizedUserName = "illiateliuk@gmail.com",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGR2sBH6VLnYUbFK6Sdqzpgt1SllzXdh+JGXyiaOwugXOoGKqDn8GJJz1ZGA2yFEtw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKo/6Ilgy19GnWevlW3hB4OhK3YQVkSQ/l6Prx8QkrX3QgbR5C5YU/092SAYdu3iGw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

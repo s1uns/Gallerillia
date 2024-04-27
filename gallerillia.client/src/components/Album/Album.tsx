@@ -1,18 +1,60 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./Album.module.scss";
 import { Link } from "react-router-dom";
 import { Button } from "../Button/Button";
+import { DeleteDialogWindow } from "../DialogWindow/DeleteDialogWindow";
+import { deleteAlbum, updateAlbum } from "../../services/api";
+import { toast } from "react-toastify";
+import { IAlbumProps } from "../../types/interfaces";
+import { TitleDialogWindow } from "../DialogWindow/TitleDialogWindow";
 
-export interface AlbumProps {
-    id: string;
-    title: string;
-    imgUrl: string;
-    author: string;
-    authorId: string;
-    canBeDeleted: boolean;
-}
+export const Album: FC<IAlbumProps> = (props: IAlbumProps) => {
+    const [newAlbumTitle, setNewAlbumTitle] = useState("");
 
-export const Album: FC<AlbumProps> = (props: AlbumProps) => {
+    const onAlbumDelete = () => {
+        const response = deleteAlbum(props.id);
+        response
+            .then((data) => {
+                toast.success(data);
+                props.onChange(true);
+            })
+            .catch((error: any) => {
+                if (error.response) {
+                    toast.error(error.response.data);
+                }
+            });
+        props.onChange(false);
+    };
+
+    const onAlbumUpdate = () => {
+        if (
+            newAlbumTitle.trim().length < 5 ||
+            newAlbumTitle.trim().length > 19
+        ) {
+            toast.error(
+                "The album title should be between 5 and 50 characters long"
+            );
+            return;
+        }
+        const response = updateAlbum({ Id: props.id, title: newAlbumTitle });
+        response
+            .then((data) => {
+                toast.success(data);
+            })
+            .catch((error: any) => {
+                if (error.response) {
+                    toast.error(error.response.data);
+                }
+            });
+        setNewAlbumTitle("");
+
+        props.onChange(true);
+    };
+
+    const updateTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setNewAlbumTitle((oldTitle) => e.target.value);
+    };
+
     return (
         <div className={styles["album"]}>
             <Link to={`/pictures/${props.id}`}>
@@ -39,20 +81,38 @@ export const Album: FC<AlbumProps> = (props: AlbumProps) => {
                     </div>
                 </div>
             </Link>
-            {props.canBeDeleted ? (
+            {props.canBeManaged ? (
                 <div className={styles["manage-btns"]}>
-                    <Button
-                        customStyles={styles["update-btn"]}
-                        title={"Delete album"}
-                    >
-                        Delete
-                    </Button>
-                    <Button
-                        customStyles={styles["delete-btn"]}
-                        title={"Delete album"}
-                    >
-                        Delete
-                    </Button>
+                    <TitleDialogWindow
+                        entityName="album"
+                        handleAgree={onAlbumUpdate}
+                        handleClose={() => setNewAlbumTitle("")}
+                        currentValue={newAlbumTitle}
+                        onChangeValue={updateTitleInput}
+                        render={(handleClick) => (
+                            <Button
+                                customStyles={styles["update-btn"]}
+                                title={"Update album"}
+                                handleClick={handleClick}
+                            >
+                                Update
+                            </Button>
+                        )}
+                    ></TitleDialogWindow>
+
+                    <DeleteDialogWindow
+                        entityName="album"
+                        handleAgree={onAlbumDelete}
+                        render={(handleClick) => (
+                            <Button
+                                customStyles={styles["delete-btn"]}
+                                title={"Delete album"}
+                                handleClick={handleClick}
+                            >
+                                Delete
+                            </Button>
+                        )}
+                    ></DeleteDialogWindow>
                 </div>
             ) : null}
         </div>

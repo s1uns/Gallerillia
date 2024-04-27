@@ -12,8 +12,8 @@ import { FC, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../services/authApi";
 import { toast } from "react-toastify";
-import { IAuthProps } from "../../App";
 import { Button } from "../../components/Button/Button";
+import { IAuthProps } from "../../types/interfaces";
 
 const Login: FC<IAuthProps> = (props: IAuthProps) => {
     const [email, setEmail] = useState("");
@@ -39,6 +39,7 @@ const Login: FC<IAuthProps> = (props: IAuthProps) => {
                 }
             });
     };
+    props.setCurrentPage("Login");
 
     return (
         <>
