@@ -1,42 +1,75 @@
-import { FC, useState } from "react";
-import { AlbumProps } from "../../components/Album/Album";
-import { AlbumsList } from "../../components/AlbumsList/AlbumsList";
-import { Pagination } from "../../components/Pagination/Pagination";
+import { FC, useEffect, useState } from "react";
+import { AlbumList } from "../../components/AlbumList/AlbumList";
 import styles from "./MyAlbumsPage.module.scss";
+import { TitleDialogWindow } from "../../components/DialogWindow/TitleDialogWindow";
+import { Button } from "../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
+import { IPageProps } from "../../types/interfaces";
+import { toast } from "react-toastify";
+import { createAlbum } from "../../services/api";
 
-export const MyAlbumsPage: FC = () => {
-    const [albums, setAlbums] = useState<AlbumProps[]>([
-        { id: "1", title: "Family", imgUrl: "", author: "Illia" },
-        {
-            id: "2",
-            title: "Life",
-            imgUrl: "https://i0.wp.com/picjumbo.com/wp-content/uploads/beautiful-nature-mountain-scenery-with-flowers-free-photo.jpg?w=600&quality=80",
-            author: "Michael",
-        },
-        {
-            id: "3",
-            title: "Life",
-            imgUrl: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
-            author: "Illia",
-        },
-        {
-            id: "4",
-            title: "Study",
-            imgUrl: "https://images.squarespace-cdn.com/content/v1/56b1148fe707ebac7ac5d685/1659916527594-0QOSGRAEFR3ZKPAIRBKI/studying-ahead-1421056.jpg",
-            author: "George",
-        },
-        { id: "5", title: "Nature", imgUrl: "", author: "Betsy" },
-    ]);
+const MyAlbumsPage: FC<IPageProps> = (props: IPageProps) => {
+    const [albumTitle, setAlbumTitle] = useState<string>("");
+    const [shouldRefill, setShouldRefill] = useState<boolean>(false);
+    const navigate = useNavigate();
+    const updateTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setAlbumTitle((oldTitle) => e.target.value);
+    };
+
+    const onAlbumCreate = () => {
+        if (albumTitle.trim().length < 5 || albumTitle.trim().length > 19) {
+            toast.error(
+                "The album title should be between 5 and 50 characters long"
+            );
+            return;
+        }
+        const response = createAlbum({ title: albumTitle });
+        response
+            .then((data) => {
+                toast.success(data);
+                setShouldRefill(true);
+            })
+            .catch((error: any) => {
+                if (error.response) {
+                    toast.error(error.response.data);
+                }
+            });
+        setAlbumTitle("");
+        setShouldRefill(false);
+
+    };
+
+    useEffect(() => {
+        if (!props.isLogged) {
+            props.setCurrentPage("Login");
+            toast.warn("You need to login first.");
+            return navigate("/login");
+        }
+    }, []);
+
     return (
         <div className={styles["album-page"]}>
-            <div className={styles["container"]}>
-                <AlbumsList albumsType="All Albums" albums={albums} />
-                <Pagination
-                    currentPage={0}
-                    onChangePage={() => {}}
-                    totalPages={15}
-                />
+            <div className={styles["add-album"]}>
+                <TitleDialogWindow
+                    entityName="album"
+                    handleAgree={onAlbumCreate}
+                    handleClose={() => setAlbumTitle("")}
+                    currentValue={albumTitle}
+                    onChangeValue={updateTitleInput}
+                    render={(handleClick) => (
+                        <Button
+                            customStyles={styles["create-btn"]}
+                            title={"Create album"}
+                            handleClick={handleClick}
+                        >
+                            Create
+                        </Button>
+                    )}
+                ></TitleDialogWindow>
             </div>
+            <AlbumList shouldRefill={shouldRefill} albumsType="my-albums" />
         </div>
     );
 };
+
+export default MyAlbumsPage;

@@ -1,18 +1,10 @@
 import { ReactNode, FC } from "react";
 import styles from "./Button.module.scss";
+import { IButtonProps } from "../../types/interfaces";
 
-type ButtonType = "button" | "submit" | "reset" | undefined;
 
-interface ButtonProps {
-    children: ReactNode;
-    handleClick?: () => void;
-    customStyles?: string;
-    type?: ButtonType;
-    title: string;
-    disabled?: boolean;
-}
 
-export const Button: FC<ButtonProps> = (props: ButtonProps) => {
+export const Button: FC<IButtonProps> = (props: IButtonProps) => {
     return (
         <button
             onClick={props?.handleClick}
