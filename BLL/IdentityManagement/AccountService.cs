@@ -69,6 +69,7 @@ namespace BLL.IdentityManagement
                 return new SignInResultDto
                 {
                     UserId = user.Id,
+                    UserRole = (await _userManager.GetRolesAsync(identityUser))[0],
                     Bearer = token
                 };
             }
