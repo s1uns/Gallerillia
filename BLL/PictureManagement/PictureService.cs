@@ -98,7 +98,12 @@ namespace BLL.PictureManagement
             try
             {
 
-                var isUserValid = _contextAccessor.TryGetUserId(out Guid userId);
+                var isIdValid = _contextAccessor.TryGetUserId(out Guid userId);
+
+                if (isIdValid is false)
+                {
+                    return UserErrors.InvalidUserId;
+                }
 
                 var votesCountQuery = _context.Votes.AsQueryable();
                 var userVoteQuery = _context.Votes.Where(v => v.UserId == userId);
