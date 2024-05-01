@@ -100,10 +100,7 @@ namespace BLL.PictureManagement
 
                 var isIdValid = _contextAccessor.TryGetUserId(out Guid userId);
 
-                if (isIdValid is false)
-                {
-                    return UserErrors.InvalidUserId;
-                }
+
 
                 var votesCountQuery = _context.Votes.AsQueryable();
                 var userVoteQuery = _context.Votes.Where(v => v.UserId == userId);
@@ -125,11 +122,11 @@ namespace BLL.PictureManagement
                 {
                     var upvotesCount = await votesCountQuery.Where(v => v.PictureId == p.Id && v.IsPositive).CountAsync();
                     var downvotesCount = await votesCountQuery.Where(v => v.PictureId == p.Id && !v.IsPositive).CountAsync();
-                    var userVoteStatus = await userVoteQuery.AnyAsync(v => v.PictureId == p.Id && v.IsPositive)
+                    var userVoteStatus = isIdValid ? await userVoteQuery.AnyAsync(v => v.PictureId == p.Id && v.IsPositive)
                         ? nameof(VoteStatus.UPVOTED)
                         : await userVoteQuery.AnyAsync(v => v.PictureId == p.Id && !v.IsPositive)
                             ? nameof(VoteStatus.DOWNVOTED)
-                            : nameof(VoteStatus.UNVOTED);
+                            : nameof(VoteStatus.UNVOTED) : nameof(VoteStatus.UNVOTED);
 
                     result.Pictures.Add(new PictureDto(p.Id, p.ImgUrl, upvotesCount, downvotesCount, userVoteStatus));
                 });
